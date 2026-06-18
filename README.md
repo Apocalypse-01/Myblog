@@ -1,4 +1,4 @@
-# MyBlog - 个人知识管理博客系统
+# MyBlog - 博客系统
 
 基于 SpringBoot + Vue3 的个人知识管理博客系统，支持 Markdown 文章创作与编辑、EPUB 电子书下载、知识图谱可视化、AI 辅助创作、数据仪表盘等功能。
 
