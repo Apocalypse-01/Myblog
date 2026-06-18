@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="liyue.myblog.mapper.ArticleMapper">
+
+
+<!--    <select id="getByArticleId" resultType="liyue.myblog.dto.ArticleDTO">-->
+
+<!--        select * from article where id = #{articleId}-->
+
+<!--    </select>-->
+
+
+    <insert id="insertArticle" useGeneratedKeys="true" keyProperty="id">
+        insert into article (article_title, article_sign,author_id, author_name,  article_content, create_time, change_time,favorites,likes)
+        VALUES (#{articleTitle},#{articleSign},#{authorId},#{authorName},#{articleContent},#{createTime},#{changeTime},#{favorites},#{likes})
+
+
+    </insert>
+
+    <insert id="insertArticleLike">
+
+        insert into article_like (article_id, author_id, create_time, change_time)
+        VALUES ( #{articleId},#{authorId}, #{createTime}, #{changeTime})
+
+    </insert>
+    <insert id="insertArticleFavorites">
+        insert into article_favorite (article_id, author_id, create_time, change_time)
+            VALUES ( #{articleId},#{authorId}, #{createTime}, #{changeTime})
+    </insert>
+
+
+    <select id="getPageByauthorId" resultType="liyue.myblog.dto.ArticlePageDTO">
+
+        select * from article where author_id = #{authorId} order by create_time desc limit #{start} , #{end}
+
+
+    </select>
+
+    <select id="getTotalByauthorId" resultType="java.lang.Integer">
+
+        select count(id) from article where author_id=#{authorId}
+
+    </select>
+
+    <select id="getPageBySign" resultType="liyue.myblog.dto.ArticlePageDTO">
+
+        select * from article  where article_sign=#{sign}   order by  ${orderC} desc  limit #{start} , #{num}
+
+    </select>
+
+    <select id="getTotalBySign" resultType="java.lang.Integer">
+        select count(id) from article  where article_sign=#{sign}
+    </select>
+
+    <select id="getArticle" resultType="liyue.myblog.dto.ArticleDTO">
+
+        select id,author_id,author_name,article_title,article_sign,favorites,likes,article_content,create_time
+            from article where id=#{articleId};
+
+    </select>
+
+    <select id="getArticleFavorites" resultType="liyue.myblog.dto.ArticlePageDTO">
+        select * from  article join
+            (select article_id from  article_favorite where author_id = #{authorId}) as b
+                 where id=b.article_id
+            limit #{start}, #{num}
+
+    </select>
+
+    <select id="getTotalInAF" resultType="java.lang.Integer">
+
+        select count(id) from  article_favorite where author_id = #{authorId}
+
+    </select>
+
+<!--  获取文章点赞信息  -->
+    <select id="getArticleLikes" resultType="liyue.myblog.dto.ArticlePageDTO">
+        select * from  article join
+                (select article_id from  article_like where author_id = #{authorId}) as b
+                     where id=b.article_id
+                limit #{start}, #{num}
+
+    </select>
+
+<!--  获取总点赞数  -->
+    <select id="getTotalInAL" resultType="java.lang.Integer">
+        select count(id) from  article_like where author_id = #{authorId}
+
+    </select>
+
+<!--    -->
+    <select id="getPageByTime" resultType="liyue.myblog.dto.ArticlePageDTO">
+        select * from  article order by create_time  limit #{start} , #{num};
+    </select>
+
+    <select id="getPageByAllOrder" resultType="liyue.myblog.dto.ArticlePageDTO">
+        select * from article order by ${orderC} desc limit #{start}, #{num}
+    </select>
+
+    <update id="updateArticle">
+        update article set article_title = #{articleTitle}, article_sign = #{articleSign},
+                           article_content = #{articleContent}, change_time = #{changeTime}
+        where id = #{id} and author_id = #{authorId}
+    </update>
+
+    <delete id="deleteArticle">
+        delete from article where id = #{id} and author_id = #{authorId}
+    </delete>
+
+
+</mapper>

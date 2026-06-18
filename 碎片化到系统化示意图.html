@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>碎片化知识 → 系统化管理 示意图</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; background: #fff; font-family: "Microsoft YaHei", sans-serif;
+  }
+  .canvas { width: 800px; height: 700px; position: relative; }
+  .fragment {
+    position: absolute; text-align: center;
+  }
+  .fragment .node-circle {
+    width: 80px; height: 80px; border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-size: 13px; color: #555; margin: 0 auto;
+    background: #f5f5f5; border: 2px solid #d0d0d0;
+  }
+  .f1 { top: 20px;  left: 60px; }
+  .f2 { top: 10px;  left: 340px; }
+  .f3 { top: 20px;  right: 60px; }
+  .f4 { top: 200px; left: 0; }
+  .f5 { top: 200px; right: 0; }
+  .f6 { top: 140px; left: 150px; }
+  .center-box {
+    position: absolute; top: 210px; left: 50%; transform: translateX(-50%);
+    width: 180px; height: 80px; border-radius: 16px;
+    background: #3a3f47; border: 2px solid #555;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 18px; font-weight: bold; letter-spacing: 2px;
+    z-index: 10;
+  }
+  .arrows { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+  .output-section {
+    position: absolute; top: 370px; left: 50%; transform: translateX(-50%);
+    width: 100%; text-align: center;
+  }
+  .down-arrow { width: 3px; height: 45px; background: #888; margin: 0 auto 16px; position: relative; }
+  .down-arrow::after {
+    content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+    border-left: 10px solid transparent; border-right: 10px solid transparent;
+    border-top: 16px solid #888;
+  }
+  .output-grid { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .output-item {
+    width: 120px; height: 60px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; color: #444;
+    background: #f8f8f8; border: 2px solid #d5d5d5;
+  }
+  .title-area {
+    position: absolute; bottom: 550px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 100px;
+  }
+  .tag-frag { color: #999; font-size: 13px; }
+  .tag-sys  { color: #666; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="fragment f1"><div class="node-circle">视频笔记</div></div>
+  <div class="fragment f2"><div class="node-circle">博客收藏</div></div>
+  <div class="fragment f3"><div class="node-circle">网页摘录</div></div>
+  <div class="fragment f4"><div class="node-circle">零散草稿</div></div>
+  <div class="fragment f5"><div class="node-circle">聊天记录</div></div>
+  <div class="fragment f6"><div class="node-circle">邮件摘记</div></div>
+
+  <svg class="arrows" viewBox="0 0 800 700">
+    <defs>
+      <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+        <polygon points="0 0, 8 3, 0 6" fill="#bbb"/>
+      </marker>
+    </defs>
+    <line x1="100" y1="90" x2="370" y2="240" stroke="#ccc" stroke-width="2" marker-end="url(#arrowhead)" stroke-dasharray="6,3"/>
+    <line x1="400" y1="82" x2="400" y2="205" stroke="#ccc" stroke-width="2" marker-end="url(#arrowhead)" stroke-dasharray="6,3"/>
+    <line x1="700" y1="90" x2="430" y2="240" stroke="#ccc" stroke-width="2" marker-end="url(#arrowhead)" stroke-dasharray="6,3"/>
+    <line x1="70"  y1="270" x2="305" y2="250" stroke="#ccc" stroke-width="2" marker-end="url(#arrowhead)" stroke-dasharray="6,3"/>
+    <line x1="220" y1="210" x2="310" y2="235" stroke="#ccc" stroke-width="2" marker-end="url(#arrowhead)" stroke-dasharray="6,3"/>
+    <line x1="730" y1="270" x2="495" y2="250" stroke="#ccc" stroke-width="2" marker-end="url(#arrowhead)" stroke-dasharray="6,3"/>
+  </svg>
+
+  <div class="center-box">智能笔记系统</div>
+
+  <div class="output-section">
+    <div class="down-arrow"></div>
+    <div class="output-grid">
+      <div class="output-item">文章图谱</div>
+      <div class="output-item">标签分类</div>
+      <div class="output-item">快速检索</div>
+      <div class="output-item">写作统计</div>
+      <div class="output-item">收藏归档</div>
+    </div>
+  </div>
+
+  <div class="title-area">
+    <span class="tag-frag">← 碎片化 · 分散无序</span>
+    <span class="tag-sys">系统化 · 集中有序 →</span>
+  </div>
+</div>
+</body>
+</html>

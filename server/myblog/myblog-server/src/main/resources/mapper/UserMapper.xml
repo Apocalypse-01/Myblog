@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="liyue.myblog.mapper.UserMapper">
+
+    <insert id="insertUser">
+        insert into user (user_name, password, phone, email, create_time)
+        VALUES (#{userName},#{password},#{phone},#{email},#{createTime});
+
+    </insert>
+
+    <select id="getByEmail" resultType="liyue.myblog.dto.UserDTO">
+        select id, user_name, email, phone, create_time from user where email = #{email};
+    </select>
+
+    <update id="updateUser">
+        update user
+        <set>
+            <if test="userName != null">user_name = #{userName},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="signature != null">signature = #{signature},</if>
+            <if test="avatar != null">avatar = #{avatar},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+</mapper>
