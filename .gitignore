@@ -40,3 +40,36 @@ coverage/
 
 # Temp files
 *.tsbuildinfo
+
+# Sensitive config (use application-example.properties as template)
+server/myblog/myblog-server/src/main/resources/application.properties
+server/myblog/myblog-pojo/src/main/resources/application.properties
+
+# Non-project files (docs, thesis, PPT, etc.)
+*.docx
+*.pptx
+论文*
+毕业*
+最新*
+本科*
+标准化*
+数据库ER*
+流程图*
+界面功能*
+功能丰富*
+测试报告*
+测试文档*
+测试文档_new*
+系统功能*
+er.md
+gen_ppt.py
+gen_resume.py
+个人简历*
+答辩PPT*
+碎片化*
+系统上下文图*
+系统总体架构图*
+系统整体架构*
+系统组件图*
+基于SpringBoot*
+img/
